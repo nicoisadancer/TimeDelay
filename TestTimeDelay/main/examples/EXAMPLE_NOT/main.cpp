@@ -52,7 +52,8 @@ extern "C" void app_main(void)
     while (true) // Endlos-Schleife
     {
         // Eingang lesen, das not wird gebraucht weil die Eingaenge bei losgelassenem Taster auf 3.3V sind, und der Taster auf GND schaltet.
-        bool I1 = not gpio_get_level(BUTTON_I1);
+        bool I1 = not gpio_get_level(BUTTON_I1);bool I1 = not gpio_get_level(BUTTON_I1);
+
 
 
 
