@@ -64,10 +64,12 @@ extern "C" void app_main(void)
         bool I2 = not gpio_get_level(BUTTON_I2);
         bool I3 = not gpio_get_level(BUTTON_I3);
 
-
+        bool A = I1 or I2;
+        bool B = not I3
+        bool Q1 =A and B;
 
         // Ausgaenge setzen
-        gpio_set_level(GPIO_Q1, (I1 or I2) and (not I3) ); //Verwendung des OR aus der IEC IEC 61131; auch in C++ vorhanden, in C nicht not
+        gpio_set_level(GPIO_Q1, Q1 ); //Verwendung des OR aus der IEC IEC 61131; auch in C++ vorhanden, in C nicht not
 
         // 100ms warten  = Intervallzeit des Tasks
         vTaskDelay(100 / portTICK_PERIOD_MS); // 100ms cycle for Test.
