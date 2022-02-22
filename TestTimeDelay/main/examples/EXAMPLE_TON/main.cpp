@@ -12,6 +12,7 @@
 #include "driver/gpio.h"
 #include "sdkconfig.h"
 #include "StandardLib.h"
+#include "BasicLib.h"
 
 #define LOG_LOCAL_LEVEL ESP_LOG_INFO
 #include "esp_log.h"
@@ -57,18 +58,28 @@ extern "C" void app_main(void)
     TON TON2;
     TON2.PT = 2000;
 
+
+    TOGGLE TOGGLE1;
+
     while (true) // Endlos-Schleife
     {
         // Eingang lesen, das not wird gebraucht weil die Eingaenge bei losgelassenem Taster auf 3.3V sind, und der Taster auf GND schaltet.
         bool I1 = not gpio_get_level(BUTTON_I1);
         bool I2 = not gpio_get_level(BUTTON_I2);
 
+
         // den I1 an TON1 uebergeben, und TON1 aufrufen
         TON1(I1);
         TON2(I2);
 
+        TOGGLE1.RST = I2;
+
+        TOGGLE1(TON1.Q);
+
+
+
         // Ausgaenge setzen
-        gpio_set_level(GPIO_Q1, TON1.Q);
+        gpio_set_level(GPIO_Q1, TOGGLE1.Q);
         gpio_set_level(GPIO_Q2, TON2.Q);
 
         // 100ms warten  = Intervallzeit des Tasks
