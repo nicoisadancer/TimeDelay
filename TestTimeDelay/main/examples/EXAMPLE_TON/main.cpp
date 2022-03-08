@@ -64,7 +64,7 @@ extern "C" void app_main(void)
         // den I1 an TON1 uebergeben, und TON1 aufrufen
         TON1(I1);
 
-        //TOGGLE1.RST = I2;
+        TOGGLE1.RST = I2;
         TOGGLE1(TON1.Q);
 
         // Ausgaenge setzen
