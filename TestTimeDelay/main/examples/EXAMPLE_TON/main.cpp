@@ -54,6 +54,8 @@ extern "C" void app_main(void)
 
     RS RS1;
 
+    R_TRIG R_TRIG1;
+
     while (true) // Endlos-Schleife
     {
         // Eingang lesen, das not wird gebraucht weil die Eingaenge bei losgelassenem Taster auf 3.3V sind, und der Taster auf GND schaltet.
@@ -64,8 +66,10 @@ extern "C" void app_main(void)
         // den I1 an TON1 uebergeben, und TON1 aufrufen
         TON1(I1);
 
+        R_TRIG1(I1);
 
-        RS1(TON1.Q,I2);
+
+        RS1(TON1.Q,R_TRIG1.Q);
 
         // Ausgaenge setzen
         gpio_set_level(GPIO_Q1, RS1.Q1);
